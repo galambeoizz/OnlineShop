@@ -1,4 +1,5 @@
-﻿using Model.Dao;
+﻿using Common;
+using Model.Dao;
 using OnlineShop.Areas.Admin.Models;
 using OnlineShop.Common;
 using System;
@@ -24,8 +25,8 @@ namespace OnlineShop.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var dao = new UserDao();
-                var result = dao.Login(model.Username, model.Password);
-                if (result)
+                var resp = dao.Login(model.Username, Encryptor.MD5Hash(model.Password));
+                if (resp.Code == ResCode.Success)
                 {
                     var user = dao.GetByUsername(model.Username);
 
@@ -40,10 +41,10 @@ namespace OnlineShop.Areas.Admin.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Đăng nhập thất bại!");
+                    ModelState.AddModelError("", resp.Message);
                 }
             }
-            return View(model);
+            return View("Index");
         }
     }
 }

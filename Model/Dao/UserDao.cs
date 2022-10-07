@@ -1,4 +1,5 @@
-﻿using Model.EF;
+﻿using Common;
+using Model.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,16 +28,45 @@ namespace Model.Dao
             return db.Users.SingleOrDefault(x => x.UserName == username);
         }
 
-        public bool Login(string username, string password)
+        public ResponseModel Login(string username, string password)
         {
-            var result = db.Users.Count(x => x.UserName == username && x.Password == password);
-            if (result > 0)
+            var result = new ResponseModel();
+            var user = db.Users.FirstOrDefault(x => x.UserName == username);
+            if (user == null)
             {
-                return true;
+                result = new ResponseModel()
+                {
+                    Code = ResCode.Failure,
+                    Message = "Username does not exist"
+                };
+                return result;
+            }
+            else if(user.Status == false)
+            {
+                result = new ResponseModel()
+                {
+                    Code = ResCode.Failure,
+                    Message = "Account has not been actived"
+                };
+                return result;
+            }
+            else if (user.Password != password)
+            {
+                result = new ResponseModel()
+                {
+                    Code = ResCode.Failure,
+                    Message = "Password is not correct"
+                };
+                return result;
             }
             else
             {
-                return false;
+                result = new ResponseModel()
+                {
+                    Code = ResCode.Success,
+                    Message = "Login successful"
+                };
+                return result;
             }
         }
     }
