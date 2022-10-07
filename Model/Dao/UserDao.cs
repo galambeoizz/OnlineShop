@@ -9,7 +9,7 @@ namespace Model.Dao
 {
     public class UserDao
     {
-        private OnlineShopDbContext db = null;
+        OnlineShopDbContext db = null;
         public UserDao()
         {
             db = new OnlineShopDbContext();
@@ -20,6 +20,11 @@ namespace Model.Dao
             db.Users.Add(entity);
             db.SaveChanges();
             return entity.ID;
+        }
+
+        public User GetByUsername(string username)
+        {
+            return db.Users.SingleOrDefault(x => x.UserName == username);
         }
 
         public bool Login(string username, string password)
