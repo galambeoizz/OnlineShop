@@ -1,3 +1,7 @@
 packages/
 bin/
 obj/
+Debug/
+Release/
+.vs/
+
