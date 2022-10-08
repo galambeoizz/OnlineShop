@@ -46,7 +46,7 @@ namespace Model.Dao
                 result = new ResponseModel()
                 {
                     Code = ResCode.Failure,
-                    Message = "Account has not been actived"
+                    Message = "Account has been disabled"
                 };
                 return result;
             }
