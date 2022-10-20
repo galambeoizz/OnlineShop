@@ -16,11 +16,11 @@ namespace Model.Dao
             db = new OnlineShopDbContext();
         }
 
-        public long Insert(User entity)
+        public long Insert(User user)
         {
-            db.Users.Add(entity);
+            db.Users.Add(user);
             db.SaveChanges();
-            return entity.ID;
+            return user.ID;
         }
 
         public User GetByUsername(string username)
