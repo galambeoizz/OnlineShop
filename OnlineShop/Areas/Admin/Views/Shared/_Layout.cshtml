@@ -19,6 +19,9 @@
     <!-- Custom styles for this template-->
     <link href="~/Assets/Admin/css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!-- Custom styles for this page -->
+    <link href="~/Assets/Admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -367,7 +370,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">@RenderSection("header", required:true)</h1>
+                    <h1 class="h3 mb-4 text-gray-800">@RenderSection("header", required: true)</h1>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -424,6 +427,12 @@
     <!-- Custom scripts for all pages-->
     <script src="~/Assets/Admin/js/sb-admin-2.min.js"></script>
 
+    <!-- Page level plugins -->
+    <script src="~/Assets/Admin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Assets/Admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/Assets/Admin/js/demo/datatables-demo.js"></script>
 </body>
 
 </html>
